@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warranty and Service Request | Contemporary Pool Works</title>
+<meta name="description" content="Submit a warranty or service request to Contemporary Pool Works. A representative will contact you within 24 hours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#2050c5;
+    --blue-deep:#2c3390;
+    --sky:#a7daf5;
+    --sky-soft:#e7eff9;
+    --yellow:#ffde59;
+    --ink:#222932;
+    --ink-soft:#5b6472;
+    --line:#d7dde6;
+    --paper:#ffffff;
+    --error:#b3261e;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    color:var(--ink);
+    background:var(--paper);
+  }
+  a{color:var(--blue)}
+
+  /* Header block mirrors the manual cover: blue field with a white edge stripe */
+  .cover{
+    background:var(--blue);
+    color:#fff;
+    position:relative;
+    padding:44px 24px 40px 32px;
+    overflow:hidden;
+  }
+  .cover::before{
+    content:"";
+    position:absolute;
+    left:0;top:0;bottom:0;
+    width:10px;
+    background:#fff;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:"Inter Tight",sans-serif;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:.06em;
+    margin-bottom:28px;
+  }
+  .brand .tiles{display:flex;gap:3px}
+  .brand .tiles i{display:block;width:9px;height:9px;background:var(--sky)}
+  .brand .tiles i:nth-child(odd){background:var(--blue-deep)}
+  .cover h1{
+    font-family:"Inter Tight",sans-serif;
+    font-weight:500;
+    font-size:clamp(34px,7vw,52px);
+    line-height:1;
+    letter-spacing:-.03em;
+    margin:0 0 16px;
+    max-width:12ch;
+  }
+  .cover p{
+    margin:0;
+    font-size:17px;
+    max-width:44ch;
+    color:#e8eefc;
+  }
+  .cover strong{color:var(--yellow);font-weight:600}
+
+  main{
+    max-width:640px;
+    margin:0 auto;
+    padding:32px 20px 64px;
+  }
+  @media (min-width:700px){
+    .cover{padding:64px 48px 56px 56px}
+    main{padding:40px 24px 80px}
+  }
+
+  h2{
+    font-family:"Inter Tight",sans-serif;
+    font-weight:600;
+    font-size:21px;
+    letter-spacing:-.02em;
+    color:var(--blue);
+    margin:36px 0 8px;
+  }
+  h2:first-of-type{margin-top:0}
+  .lede{color:var(--ink-soft);margin:0 0 16px;font-size:15px}
+
+  /* Timeline: the two promises, shown as a real sequence */
+  .steps{
+    list-style:none;margin:0 0 8px;padding:0;
+    border-left:3px solid var(--sky);
+  }
+  .steps li{padding:0 0 16px 18px;position:relative}
+  .steps li:last-child{padding-bottom:4px}
+  .steps li::before{
+    content:"";position:absolute;left:-9px;top:7px;
+    width:13px;height:13px;border-radius:50%;
+    background:var(--blue);border:3px solid #fff;
+  }
+  .steps b{display:block;font-weight:600;color:var(--ink)}
+  .steps span{color:var(--ink-soft);font-size:15px}
+
+  form{margin-top:8px}
+  fieldset{border:0;margin:0;padding:0;min-width:0}
+  .field{margin:0 0 18px}
+  label,.legend{
+    display:block;font-weight:500;font-size:15px;margin-bottom:6px;
+  }
+  .hint{display:block;font-weight:400;color:var(--ink-soft);font-size:14px;margin-top:2px}
+  input[type=text],input[type=tel],input[type=email],input[type=date],
+  select,textarea{
+    width:100%;
+    font:inherit;
+    color:var(--ink);
+    padding:12px 14px;
+    border:1.5px solid var(--line);
+    border-radius:6px;
+    background:#fff;
+    transition:border-color .15s;
+  }
+  textarea{min-height:130px;resize:vertical}
+  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235b6472' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:38px}
+  input:focus,select:focus,textarea:focus{
+    outline:none;border-color:var(--blue);
+    box-shadow:0 0 0 3px rgba(32,80,197,.18);
+  }
+  input[aria-invalid=true],select[aria-invalid=true],textarea[aria-invalid=true]{border-color:var(--error)}
+
+  .row{display:grid;gap:14px}
+  @media (min-width:520px){
+    .row{grid-template-columns:1fr 1fr}
+    .row.three{grid-template-columns:2fr 1fr 1fr}
+  }
+
+  /* Choice tiles for request type and urgency */
+  .choices{display:grid;gap:10px}
+  @media (min-width:520px){.choices{grid-template-columns:1fr 1fr}}
+  .choice{
+    position:relative;display:block;
+    border:1.5px solid var(--line);border-radius:6px;
+    padding:12px 14px 12px 44px;cursor:pointer;
+    font-weight:500;
+  }
+  .choice input{position:absolute;left:14px;top:15px;width:18px;height:18px;margin:0;accent-color:var(--blue)}
+  .choice small{display:block;font-weight:400;color:var(--ink-soft);font-size:13.5px;margin-top:2px}
+  .choice:has(input:checked){border-color:var(--blue);background:var(--sky-soft)}
+  .choice:has(input:focus-visible){box-shadow:0 0 0 3px rgba(32,80,197,.18)}
+
+  .urgent-note{
+    display:none;margin:10px 0 0;padding:12px 14px;
+    background:#fff7d6;border-left:4px solid var(--yellow);
+    font-size:14.5px;border-radius:0 6px 6px 0;
+  }
+  .urgent-note.show{display:block}
+
+  /* Upload */
+  .drop{
+    border:1.5px dashed var(--line);border-radius:6px;
+    padding:18px 14px;text-align:center;
+    color:var(--ink-soft);font-size:15px;
+    cursor:pointer;
+  }
+  .drop:focus-within,.drop.over{border-color:var(--blue);background:var(--sky-soft)}
+  .drop input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+  .drop b{color:var(--blue);font-weight:500}
+  .files{list-style:none;margin:10px 0 0;padding:0;font-size:14px}
+  .files li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--line)}
+  .files button{background:none;border:0;color:var(--error);font:inherit;cursor:pointer;padding:0}
+
+  .error{color:var(--error);font-size:14px;margin-top:6px;display:none}
+  .error.show{display:block}
+
+  button.primary{
+    display:block;width:100%;
+    font:inherit;font-weight:600;font-size:17px;
+    color:#fff;background:var(--blue);
+    border:0;border-radius:6px;padding:16px;
+    cursor:pointer;margin-top:8px;
+    transition:background .15s;
+  }
+  button.primary:hover{background:#1a43a8}
+  button.primary:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+  button.primary[disabled]{background:#8fa3d8;cursor:progress}
+  .fine{font-size:13.5px;color:var(--ink-soft);margin:14px 0 0}
+
+  /* Success state */
+  .done{display:none}
+  .done.show{display:block}
+  .done .ref{
+    font-family:"Inter Tight",sans-serif;
+    font-size:30px;font-weight:600;letter-spacing:-.02em;
+    color:var(--blue);margin:6px 0 18px;
+  }
+  .contact{
+    margin-top:36px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:14.5px;color:var(--ink-soft);
+  }
+  .contact b{color:var(--ink);font-weight:500}
+
+  @media (prefers-reduced-motion:no-preference){
+    input,select,textarea,.choice{transition:border-color .15s,background .15s}
+  }
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="brand">
+    <span class="tiles"><i></i><i></i><i></i><i></i><i></i></span>
+    CONTEMPORARY POOL WORKS
+  </div>
+  <h1>Warranty and Service Request</h1>
+  <p>Tell us what you are seeing and we will take it from here. <strong>A representative will contact you within 24 hours.</strong></p>
+</header>
+
+<main>
+  <section id="formSection">
+    <h2>What happens next</h2>
+    <ol class="steps">
+      <li><b>Within 24 hours</b><span>A Contemporary Pool Works representative reviews your request and contacts you to discuss next steps or schedule an on site visit.</span></li>
+      <li><b>Within 7 to 14 days</b><span>Warranty work is completed, depending on the issue and any manufacturer involvement. Urgent issues are prioritized.</span></li>
+    </ol>
+
+    <form id="wr" novalidate>
+      <h2>Your information</h2>
+      <div class="row">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input id="firstName" name="firstName" type="text" autocomplete="given-name" required>
+          <div class="error" id="err-firstName">Enter your first name.</div>
+        </div>
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input id="lastName" name="lastName" type="text" autocomplete="family-name" required>
+          <div class="error" id="err-lastName">Enter your last name.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+          <div class="error" id="err-phone">Enter a phone number.</div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+          <div class="error" id="err-email">Enter a valid email address.</div>
+        </div>
+      </div>
+
+      <h2>Property address</h2>
+      <div class="field">
+        <label for="street">Street address</label>
+        <input id="street" name="street" type="text" autocomplete="address-line1" required>
+        <div class="error" id="err-street">Enter the street address.</div>
+      </div>
+      <div class="row three">
+        <div class="field">
+          <label for="city">City</label>
+          <input id="city" name="city" type="text" autocomplete="address-level2" required>
+          <div class="error" id="err-city">Enter the city.</div>
+        </div>
+        <div class="field">
+          <label for="state">State</label>
+          <input id="state" name="state" type="text" autocomplete="address-level1" maxlength="2" value="SC" required>
+          <div class="error" id="err-state">Enter the state.</div>
+        </div>
+        <div class="field">
+          <label for="zip">ZIP</label>
+          <input id="zip" name="zip" type="text" autocomplete="postal-code" inputmode="numeric" maxlength="10" required>
+          <div class="error" id="err-zip">Enter a 5 digit ZIP.</div>
+        </div>
+      </div>
+
+      <h2>About the issue</h2>
+      <fieldset class="field">
+        <span class="legend">Request type</span>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="type" value="Warranty" required>Warranty<small>Something installed by CPW is not performing as it should</small></label>
+          <label class="choice"><input type="radio" name="type" value="Service">Service<small>Maintenance, adjustments, or a question about operation</small></label>
+        </div>
+        <div class="error" id="err-type">Choose warranty or service.</div>
+      </fieldset>
+
+      <div class="field">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="">Select one</option>
+          <option>Pool shell or interior finish</option>
+          <option>Pump, filter, heater, or chlorinator</option>
+          <option>Automation or iAquaLink</option>
+          <option>Plumbing or leak</option>
+          <option>Electrical or lighting</option>
+          <option>Pavers, concrete, or decking</option>
+          <option>Pergola, pavilion, pool house, or kitchen</option>
+          <option>Landscape or irrigation</option>
+          <option>Other</option>
+        </select>
+        <div class="error" id="err-category">Choose a category.</div>
+      </div>
+
+      <fieldset class="field">
+        <span class="legend">Is this urgent?</span>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="urgency" value="Standard" required checked>Not urgent<small>Cosmetic, seasonal, or a question</small></label>
+          <label class="choice"><input type="radio" name="urgency" value="Urgent">Urgent<small>Active leak, electrical issue, equipment down, rapid water loss, or a safety concern</small></label>
+        </div>
+        <div class="urgent-note" id="urgentNote">Urgent requests are prioritized. If there is an immediate safety risk, turn off power to the equipment at the breaker and call the office at 803-403-1968.</div>
+      </fieldset>
+
+      <div class="field">
+        <label for="desc">Describe what you are seeing</label>
+        <textarea id="desc" name="description" required placeholder="What is happening, where, and how often. Include anything you have already tried."></textarea>
+        <div class="error" id="err-desc">Describe the issue so we can help.</div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="noticed">When did you first notice it?<span class="hint">Optional</span></label>
+          <input id="noticed" name="noticed" type="date">
+        </div>
+        <div class="field">
+          <label for="walkthrough">Final walkthrough date<span class="hint">Optional. Found on page 19 of your Owners Manual</span></label>
+          <input id="walkthrough" name="walkthrough" type="date">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="photos">Photos or video<span class="hint">Optional. Up to 5 files, 10 MB each. Photos help us respond faster.</span></label>
+        <label class="drop" id="drop" for="photos">
+          <b>Choose files</b> or drag them here
+          <input id="photos" name="photos" type="file" accept="image/*,video/*" multiple>
+        </label>
+        <ul class="files" id="fileList"></ul>
+        <div class="error" id="err-files">Each file must be under 10 MB, and no more than 5 files.</div>
+      </div>
+
+      <button class="primary" id="submitBtn" type="submit">Send request</button>
+      <p class="fine">By sending this request you agree that Contemporary Pool Works may contact you by phone, text, or email about it.</p>
+      <div class="error" id="err-submit">The request did not go through. Check your connection and try again, or call 803-403-1968.</div>
+    </form>
+  </section>
+
+  <section class="done" id="done" aria-live="polite">
+    <h2>Request received</h2>
+    <p class="lede">Your reference number</p>
+    <div class="ref" id="refNo">WR-00000000-000</div>
+    <p>A Contemporary Pool Works representative will contact you within 24 hours at the phone number or email you provided. If you marked this urgent, it has been flagged for priority review.</p>
+    <p>A confirmation email is on its way to <b id="doneEmail"></b>. Keep the reference number handy if you need to follow up.</p>
+  </section>
+
+  <div class="contact">
+    <b>Contemporary Pool Works</b><br>
+    10020 Broad River Road, Irmo, SC 29063<br>
+    803-403-1968 &nbsp;|&nbsp; info@cpoolworks.com
+  </div>
+</main>
+
+<script>
+/* ==========================================================
+   CONFIGURE: paste the Apps Script web app URL here after deploy
+   ========================================================== */
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbwmVHxP09U4XMF02NjrEvHpLWQZUy8KblXu-Voz5Z8G9GYHs8OzYPecJn87Jciaivzi/exec";
+
+const MAX_FILES = 5;
+const MAX_BYTES = 10 * 1024 * 1024;
+
+const form = document.getElementById("wr");
+const fileInput = document.getElementById("photos");
+const fileList = document.getElementById("fileList");
+const drop = document.getElementById("drop");
+const urgentNote = document.getElementById("urgentNote");
+let files = [];
+
+/* Urgency note */
+form.querySelectorAll('input[name="urgency"]').forEach(r =>
+  r.addEventListener("change", () => urgentNote.classList.toggle("show", r.value === "Urgent" && r.checked))
+);
+
+/* File handling */
+function renderFiles(){
+  fileList.innerHTML = "";
+  files.forEach((f, i) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${f.name} <span style="color:#5b6472">(${(f.size/1048576).toFixed(1)} MB)</span></span>`;
+    const rm = document.createElement("button");
+    rm.type = "button"; rm.textContent = "Remove";
+    rm.addEventListener("click", () => { files.splice(i,1); renderFiles(); });
+    li.appendChild(rm);
+    fileList.appendChild(li);
+  });
+}
+function addFiles(list){
+  const err = document.getElementById("err-files");
+  err.classList.remove("show");
+  for (const f of list){
+    if (files.length >= MAX_FILES || f.size > MAX_BYTES){ err.classList.add("show"); continue; }
+    files.push(f);
+  }
+  renderFiles();
+}
+fileInput.addEventListener("change", e => { addFiles(e.target.files); fileInput.value = ""; });
+["dragenter","dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+["dragleave","drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", e => addFiles(e.dataTransfer.files));
+
+/* Validation */
+function setErr(id, bad, inputEl){
+  document.getElementById(id).classList.toggle("show", bad);
+  if (inputEl) inputEl.setAttribute("aria-invalid", bad ? "true" : "false");
+  return bad;
+}
+function validate(){
+  const v = id => document.getElementById(id);
+  let bad = false;
+  bad = setErr("err-firstName", !v("firstName").value.trim(), v("firstName")) || bad;
+  bad = setErr("err-lastName", !v("lastName").value.trim(), v("lastName")) || bad;
+  bad = setErr("err-phone", v("phone").value.replace(/\D/g,"").length < 10, v("phone")) || bad;
+  bad = setErr("err-email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("email").value), v("email")) || bad;
+  bad = setErr("err-street", !v("street").value.trim(), v("street")) || bad;
+  bad = setErr("err-city", !v("city").value.trim(), v("city")) || bad;
+  bad = setErr("err-state", v("state").value.trim().length < 2, v("state")) || bad;
+  bad = setErr("err-zip", !/^\d{5}(-\d{4})?$/.test(v("zip").value.trim()), v("zip")) || bad;
+  bad = setErr("err-type", !form.querySelector('input[name="type"]:checked')) || bad;
+  bad = setErr("err-category", !v("category").value, v("category")) || bad;
+  bad = setErr("err-desc", v("desc").value.trim().length < 10, v("desc")) || bad;
+  if (bad){
+    const first = form.querySelector('[aria-invalid="true"], .error.show');
+    if (first) first.scrollIntoView({behavior:"smooth", block:"center"});
+  }
+  return !bad;
+}
+
+/* Encode files to base64 for Apps Script */
+function readFile(f){
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res({ name: f.name, type: f.type || "application/octet-stream", data: r.result.split(",")[1] });
+    r.onerror = rej;
+    r.readAsDataURL(f);
+  });
+}
+
+/* Submit */
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  document.getElementById("err-submit").classList.remove("show");
+  if (!validate()) return;
+
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true; btn.textContent = "Sending";
+
+  try{
+    const fd = new FormData(form);
+    const payload = {
+      firstName: fd.get("firstName").trim(),
+      lastName: fd.get("lastName").trim(),
+      phone: fd.get("phone").trim(),
+      email: fd.get("email").trim(),
+      street: fd.get("street").trim(),
+      city: fd.get("city").trim(),
+      state: fd.get("state").trim().toUpperCase(),
+      zip: fd.get("zip").trim(),
+      type: fd.get("type"),
+      category: fd.get("category"),
+      urgency: fd.get("urgency"),
+      description: fd.get("description").trim(),
+      noticed: fd.get("noticed") || "",
+      walkthrough: fd.get("walkthrough") || "",
+      page: location.href,
+      files: await Promise.all(files.map(readFile))
+    };
+
+    const res = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+    const out = await res.json();
+    if (!out.ok) throw new Error(out.error || "Server error");
+
+    document.getElementById("refNo").textContent = out.ref;
+    document.getElementById("doneEmail").textContent = payload.email;
+    document.getElementById("formSection").style.display = "none";
+    document.getElementById("done").classList.add("show");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } catch(err){
+    document.getElementById("err-submit").classList.add("show");
+    btn.disabled = false; btn.textContent = "Send request";
+  }
+});
+</script>
+</body>
+</html>
